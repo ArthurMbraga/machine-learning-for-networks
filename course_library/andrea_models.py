@@ -33,7 +33,7 @@ class AndreaLinearRegression(BaseEstimator, RegressorMixin):
     def fit(self, X, y, column_names=() ):
 
         if self.fit_intercept:
-            X = sm.add_constant(X)
+            X = sm.add_constant(X, has_constant='add')
 
         # Check that X and y have correct shape
         X, y = check_X_y(X, y)
@@ -66,7 +66,7 @@ class AndreaLinearRegression(BaseEstimator, RegressorMixin):
         X_cp = check_array(X.copy() )
 
         if self.fit_intercept:
-            X_cp = sm.add_constant(X_cp)
+            X_cp = sm.add_constant(X_cp, has_constant='add')
         return self.results_.predict(X_cp)
         
 
